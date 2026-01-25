@@ -1,0 +1,48 @@
+name: Weekly Productivity Stats
+
+on:
+  schedule:
+    # Every Sunday at 23:00 IST (17:30 UTC)
+    - cron: '30 17 * * 0'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-weekly-stats:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0 # Fetch full history for stats calculation
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Configure Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+    - name: Update weekly statistics
+      run: |
+        node scripts/update_stats.js
+        
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      run: |
+        git add data/stats.json
+        git commit -m "Weekly productivity stats update - Week $(date +'%V, %Y')"
+        git push

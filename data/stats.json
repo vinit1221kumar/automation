@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "created": "2026-01-25T17:11:00.000Z",
+    "lastUpdated": null,
+    "totalWeeks": 0,
+    "description": "Automated productivity tracking statistics"
+  },
+  "weeks": [],
+  "summary": {
+    "totalCommits": 0,
+    "averageProductivity": 0,
+    "totalLearningHours": 0,
+    "goalsAchieved": 0
+  },
+  "goals": {
+    "weekly": {
+      "targetProductivity": 80,
+      "targetCommits": 35,
+      "targetLearningHours": 5,
+      "targetSessions": 35
+    },
+    "description": "Weekly productivity and learning targets"
+  }
+}

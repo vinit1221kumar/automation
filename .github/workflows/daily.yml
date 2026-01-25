@@ -1,0 +1,47 @@
+name: Daily Productivity Log
+
+on:
+  schedule:
+    # 5 times daily at IST-friendly hours (UTC times shown)
+    - cron: '0 4 * * *'   # 09:30 IST
+    - cron: '0 7 * * *'   # 12:30 IST  
+    - cron: '0 10 * * *'  # 15:30 IST
+    - cron: '0 13 * * *'  # 18:30 IST
+    - cron: '0 16 * * *'  # 21:30 IST
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-daily-log:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Configure Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+    - name: Generate daily productivity log
+      run: |
+        chmod +x ./scripts/generate_log.sh
+        ./scripts/generate_log.sh
+        
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      run: |
+        git add data/daily-log.md
+        git commit -m "Automated daily productivity log - $(date +'%Y-%m-%d %H:%M IST')"
+        git push
