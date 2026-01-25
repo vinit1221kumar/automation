@@ -1,0 +1,9 @@
+# Ensure shell scripts use LF line endings on all platforms
+*.sh text eol=lf
+
+# Ensure proper line endings for different file types
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.js text eol=lf
