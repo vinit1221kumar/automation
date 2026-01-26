@@ -24,8 +24,8 @@ jobs:
         
     - name: Configure Git
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "114796367+vinit1221kumar@users.noreply.github.com."
+        git config --local user.name "Vinit Kumar"
         
     - name: Update weekly statistics
       run: |
