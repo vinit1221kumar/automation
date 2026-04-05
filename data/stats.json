@@ -1,8 +1,8 @@
 {
   "metadata": {
     "created": "2026-01-25T17:11:00.000Z",
-    "lastUpdated": "2026-03-29T17:55:19.311Z",
-    "totalWeeks": 9,
+    "lastUpdated": "2026-04-05T17:55:10.396Z",
+    "totalWeeks": 10,
     "description": "Automated productivity tracking statistics"
   },
   "weeks": [
@@ -239,12 +239,38 @@
           "learning": true
         }
       }
+    },
+    {
+      "week": 15,
+      "year": 2026,
+      "date": "2026-04-05",
+      "git": {
+        "commits": 36,
+        "filesChanged": 2,
+        "diffStats": "2 files changed, 627 insertions(+), 6 deletions(-)"
+      },
+      "productivity": {
+        "averageProductivity": 75,
+        "totalTasks": 1083,
+        "totalLearningTime": 12949,
+        "sessionCount": 348
+      },
+      "goals": {
+        "targetProductivity": 80,
+        "targetCommits": 35,
+        "targetLearningHours": 5,
+        "achieved": {
+          "productivity": false,
+          "commits": true,
+          "learning": true
+        }
+      }
     }
   ],
   "summary": {
-    "totalCommits": 317,
+    "totalCommits": 353,
     "averageProductivity": null,
-    "totalLearningHours": 979,
+    "totalLearningHours": 1195,
     "goalsAchieved": 0
   },
   "goals": {
@@ -258,8 +284,8 @@
   },
   "trends": {
     "productivityTrend": null,
-    "commitTrend": -1,
-    "learningTrend": 1362,
+    "commitTrend": 1,
+    "learningTrend": 1174,
     "consistencyScore": 100
   }
 }
